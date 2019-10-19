@@ -30,11 +30,12 @@ class NeuralNetwork(object):
 
 
 if __name__ == '__main__':
-    neural_net = NeuralNetwork(100)
-    print('Random Synaptic Weights:\n', neural_net.synaptic_weights)
-
     m_t = str(input('Manually Train(y/n)?: '))
     manual_train = (m_t is 'y')
+
+    max_num = int(input('Max value: '))
+    neural_net = NeuralNetwork(max_num)
+    print('Random Synaptic Weights:\n', neural_net.synaptic_weights)
 
     if manual_train:
         while True:
@@ -46,8 +47,8 @@ if __name__ == '__main__':
             neural_net.train(np.array([[A, B]]), np.array([[A + B]]).T)
     else:
         for i in range(100):
-            A = np.random.randint(0, 100)
-            B = np.random.randint(0, 100)
+            A = np.random.randint(0, max_num)
+            B = np.random.randint(0, max_num)
 
             print('epoch: {} Network prediction: {} + {} = {}'.format(i, A, B, neural_net.think(np.array([A, B]))))
 
